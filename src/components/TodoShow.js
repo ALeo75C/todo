@@ -6,16 +6,8 @@ import * as dayjs from "dayjs";
  * @returns собраный html
  */
 export default function TodoShow(props) {
-  const { title, deadline, description, isInProcess } = props.data;
-  const {
-    id,
-    taskStatus,
-    links,
-    close,
-    changeViue,
-    changeStatus,
-    remove,
-  } = props;
+  const { title, deadline, description } = props.data;
+  const { id, taskStatus, links, close, changeViue, changeStatus, remove} = props;
 
   /**
    * Рендер ссылок на приложенные файлы
@@ -26,7 +18,7 @@ export default function TodoShow(props) {
     if (links) {
       links.forEach((link, i) => {
         linksItems.push(
-          <a key={i} target="_blank" href={link}>
+          <a key={i} target="_blank"  rel="noreferrer" href={link}>
             Файл {i}
           </a>
         );
@@ -34,6 +26,16 @@ export default function TodoShow(props) {
     }
     return linksItems;
   };
+
+  const radio = taskStatus === "process" ?
+    <div className="radio" onClick={() => changeStatus( id, "finished")}>
+      <input type="radio"  />
+      <p>Готово</p>
+    </div> :
+    <div className="radio" checked onClick={() => changeStatus( id, "process")}>
+      <input type="radio" />
+      <p>Готово</p>
+    </div> 
 
   return (
     <div className={"TodoPage"}>
@@ -47,23 +49,11 @@ export default function TodoShow(props) {
         <p onClick={close} className="button">
           Закрыть
         </p>
+        {radio}
         <p onClick={changeViue} className="button">
           Изменить
         </p>
-        <p
-          onClick={() =>
-            changeStatus(id, {
-              deadline,
-              description,
-              isInProcess: !isInProcess,
-              status: taskStatus === "process" ? "finished" : "process",
-              title,
-            })
-          }
-          className="button"
-        >
-          {taskStatus === "process" ? "Выполнено" : "Не выполнено"}
-        </p>
+      
         <p onClick={() => remove(id)} className="button">
           Удалить
         </p>

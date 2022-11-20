@@ -7,7 +7,7 @@ import {
   ref as sRef,
   uploadBytes,
   listAll,
-  getDownloadURL, deleteObject 
+  getDownloadURL,
 } from "firebase/storage";
 
 import "./App.css";
@@ -97,7 +97,6 @@ function App(app) {
         console.error(error);
       });
   };
-
    /**
    * Функция редактирует задачу в базе данных и обновляет данные в state
    * @param {Object} data данные о создаваемой задаче
@@ -110,7 +109,7 @@ function App(app) {
     }
     const newData = todoList;
     newData[id] = data;
-    newData[id].filesPath = `files/${id}/`;
+    
     set(ref(db), newData)
       .then(
         get(ref(db)).then((snapshot) => {
@@ -126,7 +125,6 @@ function App(app) {
       .catch((error) => {
         console.error(error);
       });
-    console.log(newData);
   };
 
    /**
@@ -162,6 +160,7 @@ function App(app) {
    */
   const changeTaskStatus = (id, status) => {
     const { deadline, description, title } = todoList[id];
+
     changeTask(
       {
         deadline,
@@ -203,8 +202,9 @@ function App(app) {
   const deadlineMonitor = (deadline, id) => {
     let now = dayjs(new Date()).format("YYYY-MM-DD");
     now = now.split("-");
+    console.log(deadline)
     deadline = deadline.split("-");
-    if (now[2] - deadline[2] > 0 && todoList[id].status != "overdue") {
+    if (now[2] - deadline[2] > 0 && todoList[id].status !== "overdue") {
       changeTaskStatus(id, "overdue");
     }
   };
@@ -224,7 +224,7 @@ function App(app) {
     if (todoList) {
       var keys = Object.keys(todoList);
       for (let i = keys.length - 1; i > -1; i--) {
-        deadlineMonitor(todoList[keys[i]].deadline, keys[i]);
+        // deadlineMonitor(todoList[keys[i]].deadline, keys[i]);
   
         cardsItems.push(
           <Card
@@ -265,6 +265,7 @@ function App(app) {
             data={todoList[showTodoPageId]}
             links={links}
             changeTask={changeTask}
+            changeTaskStatus={changeTaskStatus}
             remove={removeTodo}
             close={() => setShowTodoPageId()}
           />

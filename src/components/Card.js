@@ -27,9 +27,15 @@ export default function Card(props) {
       status === "overdue" ? (
         <h4>просрочено</h4>
       ) : status === "process" ? (
-        "Выполнено"
+        <div className="radio" onChange={() => changeTaskStatus( id, "finished")}>
+          <input type="radio" />
+          <p>Готово</p>
+        </div>
       ) : (
-        "Не выполнено"
+        <div className="radio" onClick={() => changeTaskStatus( id, "process")}>
+          <input type="radio" checked />
+          <p>Готово</p>
+        </div>
       );
 
     return (
@@ -42,16 +48,7 @@ export default function Card(props) {
           <p>{dayjs(deadline).format("DD.MM.YYYY")}</p>
         </div>
         <div>
-          <p
-            onClick={() =>
-              changeTaskStatus(
-                id,
-                status === "process" ? "finished" : "process"
-              )
-            }
-          >
-            {st}
-          </p>
+          {st}
           <p onClick={() => removeTodo(id)}>Удалить</p>
         </div>
       </div>

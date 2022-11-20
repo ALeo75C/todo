@@ -27,7 +27,7 @@ export default function TodoPage(props) {
         taskStatus={props.data.status}
         close={props.close}
         changeViue={changePartType}
-        changeStatus={props.changeTask}
+        changeStatus={props.changeTaskStatus}
         remove={props.remove}
       />
     );
