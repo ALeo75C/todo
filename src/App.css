@@ -1,38 +1,55 @@
-.App {
-  text-align: center;
+.ToDoApp {
+  width: 80%;
+  margin: 50px auto;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.ToDoApp .cardsCollection {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
 }
-
-.App-link {
-  color: #61dafb;
+.ToDoApp .cardsCollection .Card {
+  background-color: #d9d9d9;
+  padding: 10px 15px;
+  width: 45%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ToDoApp .cardsCollection .Card .content {
+  width: 70%;
 }
+.ToDoApp .cardsCollection .Card.false {
+  opacity: 0.5;
+}
+.ToDoApp .cardsCollection .Card:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.ToDoApp .TodoPage {
+  background-color: #d9d9d9;
+  border: 1px solid black;
+  position: fixed;
+  min-height: 300px;
+  width: calc(80% - 30px);
+  bottom: 0;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.ToDoApp .TodoPage img {
+  width: 200px;
+}
+.ToDoApp .TodoPage .button {
+  min-width: 100px;
+  cursor: pointer;
+}
+.ToDoApp .TodoPage form label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.ToDoApp .TodoPage form label span {
+  display: inline-block;
+  min-width: 85px;
+}
+/*# sourceMappingURL=App.css.map */
