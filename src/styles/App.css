@@ -32,14 +32,17 @@ body .radio p {
 .ToDoApp .cardsCollection .Card .content {
   width: 70%;
 }
-.ToDoApp .cardsCollection .Card.false {
-  opacity: 0.5;
+.ToDoApp .cardsCollection .Card.finished {
+  background-color: #c5e384;
+}
+.ToDoApp .cardsCollection .Card.overdue {
+  background-color: #ffbb99;
 }
 .ToDoApp .cardsCollection .Card:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0.6;
   cursor: pointer;
 }
-.ToDoApp .TodoPage {
+.ToDoApp .DetailsBlock {
   background-color: #d9d9d9;
   border: 1px solid black;
   position: fixed;
@@ -50,15 +53,15 @@ body .radio p {
   display: flex;
   justify-content: space-between;
 }
-.ToDoApp .TodoPage .button {
+.ToDoApp .DetailsBlock .button {
   min-width: 100px;
   cursor: pointer;
 }
-.ToDoApp .TodoPage form label {
+.ToDoApp .DetailsBlock form label {
   display: inline-block;
   margin-bottom: 10px;
 }
-.ToDoApp .TodoPage form label span {
+.ToDoApp .DetailsBlock form label span {
   display: inline-block;
   min-width: 85px;
 }

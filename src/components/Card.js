@@ -1,4 +1,5 @@
 import * as dayjs from "dayjs";
+import {taskStatus} from "../_taskStatus";
 
 /**
  * Рендер карточек заданий и пустой карточки для создания новой
@@ -10,38 +11,37 @@ export default function Card(props) {
     id,
     title,
     deadline,
-    status,
     onClick,
     changeTaskStatus,
     removeTodo,
+    status
   } = props;
+  
 
-  if (status === "empty") {
+  if (!status) {
     return (
-      <div onClick={onClick} className={`Card ${status}`}>
+      <div onClick={onClick} className={'Card empty'}>
         <h3>+ Добавить задачу</h3>
       </div>
     );
   } else {
-    let st =
-      status === "overdue" ? (
-        <h4>просрочено</h4>
-      ) : status === "process" ? (
-        <div className="radio" onChange={() => changeTaskStatus( id, "finished")}>
-          <input type="radio" />
-          <p>Готово</p>
-        </div>
-      ) : (
-        <div className="radio" onClick={() => changeTaskStatus( id, "process")}>
-          <input type="radio" checked />
-          <p>Готово</p>
-        </div>
-      );
+    let st
+    if (status === taskStatus.finished) {
+      st =(<div className="radio" onClick={() => changeTaskStatus(id)}>
+      <input type="checkbox" checked />
+      <p>Готово</p>
+    </div>)
+    } else {
+      st = (<div className="radio" onChange={() => changeTaskStatus( id)}>
+      <input type="checkbox"/>
+      <p>Готово</p>
+      </div>)
+    }
 
     return (
       <div
         onClick={() => onClick(Number(id))}
-        className={`Card ${status === "process"}`}
+        className={`Card ${status}`}
       >
         <div className={"content"}>
           <h3>{title}</h3>

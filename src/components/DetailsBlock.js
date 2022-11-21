@@ -1,43 +1,36 @@
 import { useState } from "react";
 
-import TodoShow from "./TodoShow";
-import TodoEdit from "./TodoEdit";
+import DetailsDisplay from "./DetailsDisplay";
+import DetailsEditor from "./DetailsEditor";
 
 /**
  * Опредение, какое состояние задания отрисовывать (просмотр или редактирование)
  * @param {*} props ожидаетя объект с данными о задаче, id задачи, список ссылок, относящихся к задаче. Функции закрытитя блока задачи, изменения статуса задачи,  и удаления задачи
  * @returns собраный html
  */
-export default function TodoPage(props) {
-  const [patrType, setPatrType] = useState("show");
-  /**
-   * Переключение вида блока (просмотр, изменение)
-   */
-  const changePartType = () => {
-    const type = patrType === "show" ? "edit" : "show";
-    setPatrType(type);
-  };
+export default function DetailsBlock(props) {
+  const [isEditMode, setMode] = useState(false);
 
-  if (patrType === "show") {
+
+  if (!isEditMode) {
     return (
-      <TodoShow
+      <DetailsDisplay
         data={props.data}
         id={props.id}
         links={props.links}
-        taskStatus={props.data.status}
         close={props.close}
-        changeViue={changePartType}
+        changeView={()=>setMode(!isEditMode)}
         changeStatus={props.changeTaskStatus}
         remove={props.remove}
       />
     );
   } else {
     return (
-      <TodoEdit
+      <DetailsEditor
         data={props.data}
         id={props.id}
         close={props.close}
-        changeViue={changePartType}
+        changeView={()=>setMode(!isEditMode)}
         handleSubmit={props.changeTask}
       />
     );

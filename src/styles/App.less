@@ -38,16 +38,19 @@ body {
       .content {
         width: 70%;
       }
-      &.false {
-        opacity: 0.5;
+      &.finished {
+        background-color: #c5e384;
+      }
+      &.overdue {
+        background-color: #ffbb99;
       }
       &:hover {
-        background-color: rgba(0, 0, 0, 0.2);
+        opacity: 0.6;
         cursor: pointer;
       }
     }
   }
-  .TodoPage {
+  .DetailsBlock {
     background-color: @gray;
     border: 1px solid black;
     position: fixed;

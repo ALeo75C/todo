@@ -5,9 +5,9 @@ import * as dayjs from "dayjs";
  * @param {*} props ожидаетя объект с данными о задаче, id задачи, статус, список ссылок, относящихся к задаче. Функции закрытитя блока задачи, смена вида окна (просмотр, изменение), изменения статуса задачи и удаления задачи. Действие при отправке формы
  * @returns собраный html
  */
-export default function TodoShow(props) {
+export default function DetailsDisplay(props) {
   const { title, deadline, description } = props.data;
-  const { id, taskStatus, links, close, changeViue, changeStatus, remove} = props;
+  const { id, links, close, changeView, remove} = props;
 
   /**
    * Рендер ссылок на приложенные файлы
@@ -18,27 +18,19 @@ export default function TodoShow(props) {
     if (links) {
       links.forEach((link, i) => {
         linksItems.push(
-          <a key={i} target="_blank"  rel="noreferrer" href={link}>
-            Файл {i}
-          </a>
+          <div className="link" key={i}>
+            <a target="_blank"  rel="noreferrer" href={link}>
+                Файл {i}
+            </a>
+          </div>
         );
       });
     }
     return linksItems;
   };
 
-  const radio = taskStatus === "process" ?
-    <div className="radio" onClick={() => changeStatus( id, "finished")}>
-      <input type="radio"  />
-      <p>Готово</p>
-    </div> :
-    <div className="radio" checked onClick={() => changeStatus( id, "process")}>
-      <input type="radio" />
-      <p>Готово</p>
-    </div> 
-
   return (
-    <div className={"TodoPage"}>
+    <div className={"DetailsBlock"}>
       <div className={"content"}>
         <h3>{title}</h3>
         <p>{dayjs(deadline).format("DD.MM.YYYY")}</p>
@@ -49,8 +41,7 @@ export default function TodoShow(props) {
         <p onClick={close} className="button">
           Закрыть
         </p>
-        {radio}
-        <p onClick={changeViue} className="button">
+        <p onClick={changeView} className="button">
           Изменить
         </p>
       

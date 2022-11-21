@@ -5,8 +5,8 @@ import { useState } from "react";
  * @param {*} props ожидаетя объект с данными о задаче, id задачи. Функции закрытитя блока, смена вида окна (просмотр, изменение). Действие при отправке формы
  * @returns собраный html
  */
-export default function TodoEdit(props) {
-  const { id, close, changeViue, handleSubmit, data } = props;
+export default function DetailsEditor(props) {
+  const { id, close, changeView, handleSubmit, data } = props;
 
   const [title, setTitle] = useState(data.title);
   const [deadline, setDeadline] = useState(data.deadline);
@@ -23,8 +23,7 @@ export default function TodoEdit(props) {
       {
         title,
         deadline: deadline,
-        description: taskDescription,
-        status: "process",
+        description: taskDescription
       },
       id,
       selectFiles
@@ -32,7 +31,7 @@ export default function TodoEdit(props) {
   };
 
   return (
-    <div className={"TodoPage"}>
+    <div className={"DetailsBlock"}>
       <form onSubmit={(e) => sub(e)}>
         <label>
           <span>Задача:</span>
@@ -73,8 +72,8 @@ export default function TodoEdit(props) {
         <p onClick={close} className="button">
           Закрыть
         </p>
-        {changeViue ? (
-          <p onClick={changeViue} className="button">
+        {changeView ? (
+          <p onClick={changeView} className="button">
             Отмена
           </p>
         ) : (
@@ -84,9 +83,3 @@ export default function TodoEdit(props) {
     </div>
   );
 }
-
-// <div className={"content"}>
-//   <h3>{title}</h3>
-//   <p>{deadline}</p>
-//   <p>{description}</p>
-// </div>
