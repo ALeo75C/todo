@@ -141,16 +141,17 @@ function App(app) {
   const removeTodo = (id) => {
     const data = todoList;
     delete data[id];
-    setLoading(true);
+    setSelectedCardId()
     set(ref(db), data)
       .then(
         get(ref(db)).then((snapshot) => {
           if (snapshot.exists()) {
             setTodoList(snapshot.val());
             setSelectedCardId();
-            setLoading(false);
             console.log("Задача успешно удалена");
           } else {
+            setSelectedCardId(undefined);
+            setTodoList([])
             console.log("No data available");
           }
         })

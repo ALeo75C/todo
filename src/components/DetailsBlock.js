@@ -11,28 +11,27 @@ import DetailsEditor from "./DetailsEditor";
 export default function DetailsBlock(props) {
   const [isEditMode, setMode] = useState(false);
 
-
-  if (!isEditMode) {
-    return (
-      <DetailsDisplay
-        data={props.data}
-        id={props.id}
-        links={props.links}
-        close={props.close}
-        changeView={()=>setMode(!isEditMode)}
-        changeStatus={props.changeTaskStatus}
-        remove={props.remove}
-      />
-    );
-  } else {
-    return (
-      <DetailsEditor
-        data={props.data}
-        id={props.id}
-        close={props.close}
-        changeView={()=>setMode(!isEditMode)}
-        handleSubmit={props.changeTask}
-      />
-    );
-  }
+    if (!isEditMode) {
+      return (
+        <DetailsDisplay
+          data={props.data}
+          id={props.id}
+          links={props.links}
+          close={props.close}
+          changeView={()=>setMode(!isEditMode)}
+          changeStatus={props.changeTaskStatus}
+          remove={props.remove}
+        />
+      );
+    } else {
+      return (
+        <DetailsEditor
+          data={props.data}
+          id={props.id}
+          close={props.close}
+          changeView={()=>setMode(!isEditMode)}
+          handleSubmit={props.changeTask}
+        />
+      );
+    }
 }
